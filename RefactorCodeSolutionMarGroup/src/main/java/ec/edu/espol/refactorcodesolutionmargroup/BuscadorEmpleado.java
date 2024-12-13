@@ -1,15 +1,13 @@
 package ec.edu.espol.refactorcodesolutionmargroup;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BuscadorEmpleado {
-     public static Empleado buscarEmpleadoPorNombre(String nombre, List<Empleado> empleados) {
-        for (Empleado empleado : empleados) {
-            if (empleado.getNombre().equals(nombre)) {
-                return empleado;
-            }
-        }
-        return null;
+      public static Optional<Empleado> buscarEmpleadoPorNombre(String nombre, List<Empleado> empleados) {
+        return empleados.stream()
+                .filter(empleado -> empleado.getNombre().equalsIgnoreCase(nombre))
+                .findFirst();
     }
 
     // Más metodos
