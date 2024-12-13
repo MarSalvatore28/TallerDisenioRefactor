@@ -57,10 +57,6 @@ public abstract class Empleado {
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
-
-
-
-    
     // Más metodos
 
 }
