@@ -15,9 +15,9 @@ public abstract class Empleado {
         this.departamento = departamento;
     }
 
-    public double calcularSalario(){
+    public double calcularSalario() {
         if (salarioBase <= 0) {
-            throw new IllegalArgumentException("El salario debe ser mayor o igual a 0");
+            throw new IllegalArgumentException("El salario base debe ser mayor o igual a 0");
         }
         if (horasTrabajadas < 0) {
             throw new IllegalArgumentException("Las horas trabajadas deben ser mayor o igual a 0");
@@ -33,7 +33,8 @@ public abstract class Empleado {
         // Calcular el salario adicional basado en el departamento
         salarioTotal += calcularSalarioAdicional();
         return salarioTotal;
-    };
+    }
+
     public abstract double calcularSalarioAdicional();
 
     public void imprimirDetalles() {
