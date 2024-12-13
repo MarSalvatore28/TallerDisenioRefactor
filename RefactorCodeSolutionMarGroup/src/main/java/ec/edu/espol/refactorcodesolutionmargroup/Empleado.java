@@ -1,47 +1,30 @@
 package ec.edu.espol.refactorcodesolutionmargroup;
 
-public class Empleado {
+public abstract class Empleado {
     private String nombre;
     private double salarioBase;
     private int horasTrabajadas;
     private String departamento;
-    private double tarifaHora;
+    
 
     public Empleado(){}
-    public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
+    public Empleado(String nombre, double salarioBase, int horasTrabajadas, String departamento) {
         this.nombre = nombre;
         this.salarioBase = salarioBase;
         this.horasTrabajadas = horasTrabajadas;
-        this.tarifaHora = tarifaHora;
         this.departamento = departamento;
     }
 
-    public double calcularSalario() {
-        double salarioTotal = salarioBase;
-        if (salarioBase>0) {
-            if (horasTrabajadas >= 0) {
-                // Horas trabajadas normales = 40;
-                if (horasTrabajadas > 40) {
-                    salarioTotal += (horasTrabajadas - 40) * 50; // Pago de horas extra
-                }
-            }else {
-                throw new IllegalArgumentException("Las horas trabajadas deben ser mayor o igual a 0");
-            }
-        } else {
-            throw new IllegalArgumentException("El salario debe ser mayor o igual a 0");
-        }
-        switch (departamento) {
-            case "Sistemas":
-                salarioTotal += 20;
-                break;
-            case "Contabilidad":
-                salarioTotal += 10;
-                break;
-            default:
-                break;
-        }
-        return salarioTotal;
+    public abstract double calcularSalario();
+
+    public void imprimirDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Salario Base: " + salarioBase);
+        System.out.println("Horas Trabajadas: " + horasTrabajadas);
+        System.out.println("Departamento: " + departamento);
+        imprimirDetallesEspecificos();
     }
+    protected abstract void imprimirDetallesEspecificos();
 
     public String getNombre() {
         return nombre;
@@ -67,14 +50,6 @@ public class Empleado {
         this.horasTrabajadas = horasTrabajadas;
     }
 
-    public double getTarifaHora() {
-        return tarifaHora;
-    }
-
-    public void setTarifaHora(double tarifaHora) {
-        this.tarifaHora = tarifaHora;
-    }
-
     public String getDepartamento() {
         return departamento;
     }
@@ -83,6 +58,9 @@ public class Empleado {
         this.departamento = departamento;
     }
 
+
+
+    
     // Más metodos
 
 }
